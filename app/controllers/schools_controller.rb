@@ -3,11 +3,18 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all
+    #@schools = School.all.map do |s|
+    @schools = School.where('id < 100').map do |s|
+          result = s.as_json(:methods =>  :grade)
+          logger.debug(result)
+          result
+        end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @schools }
+      format.json do
+        render json: @schools
+      end
     end
   end
 

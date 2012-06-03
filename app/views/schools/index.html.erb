@@ -1,27 +1,61 @@
-<h1>Listing schools</h1>
+<% content_for :scripts do %>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA2JyV4NvfnL8cTI3jzjv8VoBHrmI5qN3s&sensor=true"> </script>
+  <script>
+    $(document).ready(function () {
+      function gradeToIcon(grade) {
+        function gradeToIconName(grade) {
+          console.log('gti ' + grade);
+          if (grade === 'A') {
+            return 'green_MarkerA.png'
+          }
+          if (grade === 'B') {
+            return 'yellow_MarkerB.png'
+          }
+          if (grade === 'C') {
+            return 'orange_MarkerC.png'
+          }
+          if (grade === 'D') {
+            return 'red_MarkerD.png'
+          }
+          if (grade === 'F') {
+            return 'brown_MarkerF.png'
+          }
+        }
+        return 'images/' + gradeToIconName(grade);
+      }
+      var myOptions = {
+        center: new google.maps.LatLng(37.055177,-120.454102),
+        zoom: 5,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Fit score</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      var schools = <%= @schools.to_json.html_safe %>;
+      var i;
+      for (i = 0; i < schools.length; i++) {
+        var school = schools[i];
+        var marker = new google.maps.Marker({
+          map: map,
+          position: new google.maps.LatLng(school['latitude'], school['longitude']),
+          // Stole icons from:
+          // http://www.benjaminkeen.com/?p=105
+          title: school['name'],
+          icon: gradeToIcon(school['grade']),
+        });
+        function showOnClick(marker, school) {
+          google.maps.event.addListener(marker, 'click', function() {
+              console.log('school ' + school['id']);
+            window.location = '/schools/' + school['id'];
+          });
+        }
+        showOnClick(marker, school);
+      }
 
-<% @schools.each do |school| %>
-  <tr>
-    <td><%= school.name %></td>
-    <td><%= school.address %></td>
-    <td><%= school.fit_score %></td>
-    <td><%= link_to 'Show', school %></td>
-    <td><%= link_to 'Edit', edit_school_path(school) %></td>
-    <td><%= link_to 'Destroy', school, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+    })
+  </script>
 <% end %>
-</table>
 
-<br />
+<div style="width:500px; height:500px">
+  <div id="map_canvas" style="width:100%; height:100%"></div>
+</div>
 
-<%= link_to 'New School', new_school_path %>

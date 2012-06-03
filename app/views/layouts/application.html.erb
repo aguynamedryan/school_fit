@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <title>SchoolFit</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= yield :scripts %>
   <%= csrf_meta_tags %>
 </head>
 <body>
