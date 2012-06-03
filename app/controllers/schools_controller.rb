@@ -3,16 +3,15 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    #@schools = School.all.map do |s|
-    @schools = School.where('id < 100').map do |s|
-          result = s.as_json(:methods =>  :grade)
-          logger.debug(result)
-          result
-        end
+    @schools = School.where('id < 100')
 
+    logger.debug("WHAT?")
     respond_to do |format|
       format.html # index.html.erb
       format.json do
+        @schools = @schools.map { |s| s.as_json(:methods => :grade) }
+        logger.debug("I'm here")
+        logger.debug(@schools)
         render json: @schools
       end
     end
