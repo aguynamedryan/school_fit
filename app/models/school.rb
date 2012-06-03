@@ -20,6 +20,10 @@ class School < ActiveRecord::Base
     scores.order('year desc').first.value
   end
 
+  def recommendation
+    Recommendation.find_by_grade(self.grade)
+  end
+
   def top_ten_in_district
     schools = School.find_all_by_district(district).to_a
     schools.sort_by { |s| s.fit_score }.reverse.slice(0, 10)

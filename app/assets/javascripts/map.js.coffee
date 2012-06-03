@@ -14,6 +14,9 @@ $(document).ready () ->
         <span class="fit_grade fit_grade_<%= grade %>"><%= grade %></span><span class="fit_score">(<%= fit_score %>)</span>
       </p>
     </div>
+    <div id="recommendation">
+      <a href="recs.pdf"><%= recommendation.title %></a>
+    </div>
     <div id="graph">
     </div>
     <div id="top_ten_in_district">
