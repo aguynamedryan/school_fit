@@ -3,7 +3,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.where('id < 100')
+    @schools = School.where('id < 10')
 
     logger.debug("WHAT?")
     respond_to do |format|

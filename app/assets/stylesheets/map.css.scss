@@ -1,3 +1,23 @@
 // Place all the styles related to the map controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#school_detail {
+  background-color: #FFFFFF;
+  height: 90%;
+  left: 5%;
+  margin: 0 auto;
+  position: absolute;
+  top: 5%;
+  width: 90%;
+  z-index: 1000;
+  padding: 5px;
+  border: solid thick #b2b2b2;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+
+  .header {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+}
