@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+load 'db/importit.rb'
 Recommendation.create(:grade => 'A', :title => 'How to keep your Fit Score high', :description => 'recs.pdf')
 Recommendation.create(:grade => 'B', :title => 'How to get that A', :description => 'recs.pdf')
 Recommendation.create(:grade => 'C', :title => "Here's how other schools got to the B zone" , :description => 'recs.pdf')
