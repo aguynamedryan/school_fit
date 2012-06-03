@@ -5,12 +5,16 @@
   <title>SchoolFit</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <script src="http://d3js.org/d3.v2.js"></script>
   <%= yield :scripts %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div id="header">
-    <%= image_tag('school_fit_logo.png', :size => '100x80') %>
+    <a href="/">
+      <%= image_tag('school_fit_logo.png', :size => '100x80') %>
+    </a>
+    <span>Let the children lead the way...</span>
   </div>
   <%= yield %>
 </body>

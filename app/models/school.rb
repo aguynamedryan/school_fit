@@ -6,10 +6,14 @@ class School < ActiveRecord::Base
 
   def grade
     return 'A' if (fit_score >= 90)
-    return 'B' if (fit_score >= 80)
-    return 'C' if (fit_score >= 70)
-    return 'D' if (fit_score >= 60)
+    return 'B' if (fit_score >= 75)
+    return 'C' if (fit_score >= 60)
+    return 'D' if (fit_score >= 40)
     return 'F'
+  end
+
+  def score_values
+    scores.order('year asc').map { |s| { :year => s.year, :value => s.value } }
   end
 
   def fit_score

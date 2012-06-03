@@ -32,7 +32,6 @@ $(document).ready () ->
       return 'red_MarkerD.png' if grade == 'D'
       return 'brown_MarkerF.png' if grade == 'F'
     return 'images/' + gradeToIconName(grade)
-
   myOptions =
     center: new google.maps.LatLng(37.055177,-120.454102)
     zoom: 5
@@ -47,12 +46,47 @@ $(document).ready () ->
   $('#info').on 'click', 'a.close', null,(event) ->
     hideDetail()
 
+  drawGraph = (school) ->
+    barWidth = 40
+    width = (barWidth + 10) * school.score_values.length
+    height = 200
+
+    getValue = (datum) ->
+      datum.value
+
+    x = d3.scale.linear().domain([0, school.score_values.length]).range([0, width])
+    y = d3.scale.linear().domain([0, d3.max(school.score_values, getValue)]).rangeRound([0, height])
+
+    heightOffset = (datum) ->
+      height - y(datum.value)
+
+    xIndex = (datum, index) ->
+      x(index)
+    yOnValue = (datum) ->
+      y(datum.value)
+    barDemo = d3.select(".graph").
+      append("svg:svg").
+      attr("width", width).
+      attr("height", height)
+
+    barDemo.selectAll("rect").
+      data(school.score_values).
+        enter().
+        append("svg:rect").
+          attr("x", xIndex).
+          attr("y", heightOffset).
+          attr("height", yOnValue).
+          attr("width", barWidth).
+          attr("fill", "#2d578b")
+
+
   showOnClick = (marker, school) ->
     google.maps.event.addListener marker, 'click', (event) ->
       event.stop()
       console.log(event)
-      $.ajax url: 'schools/' + school.id, dataType: 'json', success: (data)->
-        $('#info').html(details_template(data)).show()
+      $.ajax url: 'schools/' + school.id, dataType: 'json', success: (school)->
+        $('#info').html(details_template(school)).show()
+        drawGraph(school)
         $(document).on 'keydown.hideDetail', (event) ->
           console.log(event)
           if event.keyCode == 27
@@ -70,6 +104,6 @@ $(document).ready () ->
     marker = new google.maps.Marker markerOptions
     showOnClick(marker, school)
 
-  $.ajax url: "/schools/", dataType: 'json', success: (data) ->
-    console.log('got ' + data)
-    addSchool(school) for school in data
+  $.ajax url: "/schools/", dataType: 'json', success: (schools) ->
+    console.log('got ' + schools)
+    addSchool(school) for school in schools

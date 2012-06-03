@@ -3,4 +3,21 @@
 <% end %>
 
 <div id="map_canvas"></div>
-<div id="info"></div>
+<div id="info">
+  <div class="header">
+    School Fit is a thing
+  </div>
+  <div class="news_item">
+    <p class="header">
+      Dean's List 2011
+    </p>
+    <p>
+      We’re proud to announce our first Dean’s List, a forum to highlight the Top 10 “Most Fit” Schools in the State of California!
+    </p>
+    <ul>
+    <% @top_schools.each do |school| %>
+      <li><%= school.name %> - <%= school.grade %> (<%= school.fit_score %>)</li>
+    <% end %>
+    </ul>
+  </div>
+</div>

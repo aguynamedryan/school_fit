@@ -24,7 +24,7 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @school.as_json(:methods => School::METHODS_TO_INCLUDE + [:top_ten_in_district]) }
+      format.json { render json: @school.as_json(:methods => School::METHODS_TO_INCLUDE + [:top_ten_in_district, :score_values]) }
     end
   end
 
