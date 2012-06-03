@@ -16,8 +16,8 @@
     font-weight: bold;
   }
   span.fit_grade_A { color: red; }
-  span.fit_grade_B { color: #FF0; }
-  span.fit_grade_C { color: yellow; }
+  span.fit_grade_B { color: #Fa0; }
+  span.fit_grade_C { color: #cc0; }
   span.fit_grade_D { color: red; }
   span.fit_grade_F { color: black; }
 }
@@ -37,4 +37,8 @@
   width: 200px;
   height: 200px;
   float: left;
+}
+
+#links {
+  clear: both;
 }

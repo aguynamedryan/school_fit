@@ -25,6 +25,36 @@ $(document).ready () ->
       <% _.each(top_ten_in_district, function(school) { %> <li><%= school.name %></li> <% }); %>
       </ol>
     </div>
+    <div id="links">
+      <strong>School Fit Resources</strong>
+      <ul>
+        <li>School Fit Curriculum</li>
+        <li>School Fit Newsletter</li>
+        <li>School Fit Fun Facts</li>
+      </ul>
+      <strong>State Partners/Resources</strong>
+      <ul>
+        <li><a href="http://www.californiahealthykids.org/index">California Healthy Kids</a></li>
+      </ul>
+      <strong>National Partners/Resources</strong>
+      <ul>
+        <li><a href="http://americawalks.org/2011/02/kaiser-announces-every-body-walk-project/">Kaiser Everybody Walks</a></li>
+        <li><a href="http://www.choosemyplate.gov/healthy-eating-tips/ten-tips.html">My Plate Educational Tips</a></li>
+      </ul>
+      <strong>Print Materials for Your School</strong>
+      <ul>
+        <li><a href="http://www.choosemyplate.gov/downloads/GettingStartedWithMyPlate.pdf">Getting Started with MyPlate</a></li>
+        <li><a href="http://www.choosemyplate.gov/downloads/mini_poster_English_final.pdf">MyPlate Mini-Poster</a></li>
+        <li><a href="http://www.choosemyplate.gov/downloads/FruitsAndVeggiesMiniPoster.pdf">Make Half Your Plate Fruits & Vegetables Mini-Poster</a></li>
+        <li><a href="http://teamnutrition.usda.gov/Resources/MyPlate_halfplateposter.pdf">Make Half Your Plate Fruits & Vegetables Poster for Children</a></li>
+        <li><a href="http://www.choosemyplate.gov/print-materials-ordering/dietary-guidelines.html">Dietary Guidelines Consumer Brochure</a></li>
+        <li><a href="http://www.choosemyplate.gov/print-materials-ordering/selected-messages.html">Selected Messages for Consumers</a></li>
+        <li><a href="http://www.choosemyplate.gov/healthy-eating-tips/ten-tips.html">10 Tips Nutrition Education Series</a></li>
+        <li><a href="http://www.cnpp.usda.gov/Publications/MyPlate/GraphicsSlick.pdf">1-page graphics slick</a></li>
+        <li><a href="http://www.choosemyplate.gov/healthy-eating-tips/sample-menus-recipes.html">Sample menus and recipes</a></li>
+        <li><a href="http://www.choosemyplate.gov/print-materials-ordering/graphic-resources.html">MyPlate Graphic Resources</a></li>
+      </ul>
+    </div>
   ')
   gradeToIcon = (grade) ->
     gradeToIconName = (grade) ->
