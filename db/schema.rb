@@ -11,17 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120602200950) do
+ActiveRecord::Schema.define(:version => 20120603153908) do
 
   create_table "schools", :force => true do |t|
     t.string   "name"
-    t.string   "address"
-    t.float    "fit_score"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "cdscode"
+    t.string   "district"
+    t.string   "county"
   end
+
+  add_index "schools", ["cdscode"], :name => "index_schools_on_cdscode"
+  add_index "schools", ["district"], :name => "index_schools_on_district"
 
   create_table "scores", :force => true do |t|
     t.integer  "school_id"

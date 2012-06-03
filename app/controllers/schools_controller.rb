@@ -3,13 +3,13 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.where('id < 10')
+    @schools = School.where('id < 10').where('latitude IS NOT NULL')
 
     logger.debug("WHAT?")
     respond_to do |format|
       format.html # index.html.erb
       format.json do
-        @schools = @schools.map { |s| s.as_json(:methods => :grade) }
+        @schools = @schools.map { |s| s.as_json(:methods => School::METHODS_TO_INCLUDE) }
         logger.debug("I'm here")
         logger.debug(@schools)
         render json: @schools
@@ -24,7 +24,7 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @school }
+      format.json { render json: @school.as_json(:methods => School::METHODS_TO_INCLUDE + [:top_ten_in_district]) }
     end
   end
 

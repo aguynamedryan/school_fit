@@ -4,17 +4,26 @@
 $(document).ready () ->
   return if $('#map_canvas').length == 0
   console.log('mapping')
-  details_template = _.template("
-    <div class='header'>
+  details_template = _.template('
+    <div class="header">
       <%= name %>
     </div>
-
-    <p>
-      <b>Fit score:</b>
-      <%= fit_score %>
-    </p>
-    <a href='#' class='close'>Close</a>
-  ")
+    <div>
+      <p>
+        <strong>Fit Score:</strong>
+        <span class="fit_grade fit_grade_<%= grade %>"><%= grade %></span><span class="fit_score">(<%= fit_score %>)</span>
+      </p>
+    </div>
+    <div class="top_ten_in_district">
+      <p>Top Ten in District</p>
+      <ol>
+      <% _.each(top_ten_in_district, function(school) { %> <li><%= school.name %></li> <% }); %>
+      </ol>
+    </div>
+    <div class="graph">
+    </div>
+    <a href="#" class="close">Close</a>
+  ')
   gradeToIcon = (grade) ->
     gradeToIconName = (grade) ->
       return 'green_MarkerA.png' if grade == 'A'
@@ -32,10 +41,10 @@ $(document).ready () ->
   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
 
   hideDetail = () ->
-    $('#school_detail').hide()
+    $('#info').hide()
     $(document).off('keydown.hideDetail')
 
-  $('#school_detail').on 'click', 'a.close', null,(event) ->
+  $('#info').on 'click', 'a.close', null,(event) ->
     hideDetail()
 
   showOnClick = (marker, school) ->
@@ -43,7 +52,7 @@ $(document).ready () ->
       event.stop()
       console.log(event)
       $.ajax url: 'schools/' + school.id, dataType: 'json', success: (data)->
-        $('#school_detail').html(details_template(data)).show()
+        $('#info').html(details_template(data)).show()
         $(document).on 'keydown.hideDetail', (event) ->
           console.log(event)
           if event.keyCode == 27

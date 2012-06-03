@@ -1,23 +1,33 @@
 // Place all the styles related to the map controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#school_detail {
-  background-color: #FFFFFF;
-  height: 90%;
-  left: 5%;
-  margin: 0 auto;
-  position: absolute;
-  top: 5%;
-  width: 90%;
-  z-index: 1000;
-  padding: 5px;
-  border: solid thick #b2b2b2;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-
+#info {
+  float: right;
+  width: 45%;
+  height: 80%;
+  padding: 0.2em;
   .header {
     color: blue;
-    font-size: 1.2em;
+    font-size: 2em;
     font-weight: bold;
   }
+  span.fit_grade {
+    font-size: 2.2em;
+    font-weight: bold;
+  }
+  span.fit_grade_A { color: red; }
+  span.fit_grade_B { color: #FF0; }
+  span.fit_grade_C { color: yellow; }
+  span.fit_grade_D { color: red; }
+  span.fit_grade_F { color: black; }
+}
+
+
+#map_canvas {
+  float: left;
+  width: 50%;
+  height: 80%;
+}
+
+#info {
 }
