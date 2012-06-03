@@ -17,12 +17,11 @@ $(document).ready () ->
     <div id="graph">
     </div>
     <div id="top_ten_in_district">
-      <p>Top Ten in District</p>
+      <p><strong>Top Ten in District</strong></p>
       <ol>
       <% _.each(top_ten_in_district, function(school) { %> <li><%= school.name %></li> <% }); %>
       </ol>
     </div>
-    <a href="#" class="close">Close</a>
   ')
   gradeToIcon = (grade) ->
     gradeToIconName = (grade) ->
@@ -54,7 +53,7 @@ $(document).ready () ->
               school.value
     console.log(years)
     console.log(r)
-    r.linechart(10, 10, 290, 150, years, [values], { axis: "0 0 1 1", axisxstep: school.score_values.length - 1 })
+    r.linechart(10, 10, 180, 150, years, [values], { axis: "0 0 1 1", axisxstep: school.score_values.length - 1 })
 
   showOnClick = (marker, school) ->
     google.maps.event.addListener marker, 'click', (event) ->
