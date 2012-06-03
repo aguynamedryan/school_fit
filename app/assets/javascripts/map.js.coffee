@@ -14,9 +14,6 @@ $(document).ready () ->
         <span class="fit_grade fit_grade_<%= grade %>"><%= grade %></span><span class="fit_score">(<%= fit_score %>)</span>
       </p>
     </div>
-    <div id="recommendation">
-      <a href="recs.pdf"><%= recommendation.title %></a>
-    </div>
     <div id="graph">
     </div>
     <div id="top_ten_in_district">
@@ -28,6 +25,7 @@ $(document).ready () ->
     <div id="links">
       <strong>School Fit Resources</strong>
       <ul>
+        <li><a href="recs.pdf"><%= recommendation.title %></a></li>
         <li>School Fit Curriculum</li>
         <li>School Fit Newsletter</li>
         <li>School Fit Fun Facts</li>
@@ -35,6 +33,8 @@ $(document).ready () ->
       <strong>State Partners/Resources</strong>
       <ul>
         <li><a href="http://www.californiahealthykids.org/index">California Healthy Kids</a></li>
+        <li><a href="http://www.cde.ca.gov/ls/nu/he/wellness.asp">California State Wellness Policy and Plan</a></li>
+        <li><a href="http://www.cde.ca.gov/ls/nu/he/">California\'s Healthy Eating & Nutrition Education</a></li>
       </ul>
       <strong>National Partners/Resources</strong>
       <ul>

@@ -3,7 +3,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.where('id < 10').where('latitude IS NOT NULL')
+    @schools = School.where('id > 1100 AND id < 1200')
 
     logger.debug("WHAT?")
     respond_to do |format|
@@ -11,7 +11,6 @@ class SchoolsController < ApplicationController
       format.json do
         @schools = @schools.map { |s| s.as_json(:methods => School::METHODS_TO_INCLUDE) }
         logger.debug("I'm here")
-        logger.debug(@schools)
         render json: @schools
       end
     end
