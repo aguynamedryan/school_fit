@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Recommendation.create(:grade => 'A', :title => 'How to keep your Fit Score high', :description => 'recs.pdf')
+Recommendation.create(:grade => 'B', :title => 'How to get that A', :description => 'recs.pdf')
+Recommendation.create(:grade => 'C', :title => "Here's how other schools got to the B zone" , :description => 'recs.pdf')
+Recommendation.create(:grade => 'D', :title => "Here's how other schools improved their Fit Score in the C range", :description => 'recs.pdf')
+Recommendation.create(:grade => 'F', :title => "From F to Fit - A Two-Year Plan", :description => 'recs.pdf')
