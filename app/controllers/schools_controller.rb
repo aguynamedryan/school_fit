@@ -3,7 +3,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.includes(:scores).all
+    @schools = School.includes(:scores).limit(1000)
 
     respond_to do |format|
       format.html # index.html.erb
