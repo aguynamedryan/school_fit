@@ -1,6 +1,6 @@
 class School < ActiveRecord::Base
   attr_accessible :district, :county, :cdscode, :latitude, :longitude, :address, :fit_score, :name
-  has_many :scores
+  has_many :scores, :order => 'year DESC'
 
   METHODS_TO_INCLUDE = [:fit_score, :grade]
 
@@ -13,11 +13,11 @@ class School < ActiveRecord::Base
   end
 
   def score_values
-    scores.order('year asc').map { |s| { :year => s.year, :value => s.value } }
+    scores.reverse.map { |s| { :year => s.year, :value => s.value } }
   end
 
   def fit_score
-    scores.order('year desc').first.value
+    scores.first.value
   end
 
   def recommendation

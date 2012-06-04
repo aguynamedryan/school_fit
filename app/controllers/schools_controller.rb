@@ -3,14 +3,14 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.where('id > 1100 AND id < 1200')
+    @schools = School.includes(:scores).all
 
-    logger.debug("WHAT?")
     respond_to do |format|
       format.html # index.html.erb
       format.json do
-        @schools = @schools.map { |s| s.as_json(:methods => School::METHODS_TO_INCLUDE) }
         logger.debug("I'm here")
+        @schools = @schools.map { |s| s.as_json(:methods => School::METHODS_TO_INCLUDE) }
+        logger.debug(@schools.length)
         render json: @schools
       end
     end
