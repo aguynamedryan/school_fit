@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready () ->
   return if $('#map_canvas').length == 0
-  console.log('mapping')
   details_template = _.template('
     <div class="header">
       <%= name %>
@@ -84,19 +83,15 @@ $(document).ready () ->
               school.year
     values = school.score_values.map (school) ->
               school.value
-    console.log(years)
-    console.log(r)
     r.linechart(10, 10, 180, 150, years, [values], { axis: "0 0 1 1", axisxstep: school.score_values.length - 1 })
 
   showOnClick = (marker, school) ->
     google.maps.event.addListener marker, 'click', (event) ->
       event.stop()
-      console.log(event)
       $.ajax url: 'schools/' + school.id, dataType: 'json', success: (school)->
         $('#info').html(details_template(school)).show()
         drawGraph(school)
         $(document).on 'keydown.hideDetail', (event) ->
-          console.log(event)
           if event.keyCode == 27
             hideDetail()
 
@@ -113,5 +108,4 @@ $(document).ready () ->
     showOnClick(marker, school)
 
   $.ajax url: "/schools/", dataType: 'json', success: (schools) ->
-    console.log('got ' + schools)
     addSchool(school) for school in schools
