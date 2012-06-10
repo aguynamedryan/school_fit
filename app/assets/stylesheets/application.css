@@ -28,3 +28,14 @@ body { height: 100%; margin: 0; padding: 0 }
   padding: 5px;
 }
 
+div.team_member_description {
+  border-top: thin dotted black;
+  padding-bottom: 10px;
+}
+div.content {
+  max-width: 1000px;
+  margin: auto;
+}
+div.content h1, div.content h3 {
+  color: blue;
+}
