@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604140929) do
+ActiveRecord::Schema.define(:version => 20120615064104) do
 
   create_table "recommendations", :force => true do |t|
     t.string   "grade"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120604140929) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "scores", ["school_id", "year"], :name => "index_scores_on_school_id_and_year"
   add_index "scores", ["school_id"], :name => "index_scores_on_school_id"
 
 end
